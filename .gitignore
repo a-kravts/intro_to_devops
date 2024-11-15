@@ -1,2 +1,4 @@
 info.txt
-key.json
+terraform_yandex/key.json
+terraform_yandex/.terraform.lock.hcl
+terraform_yandex/.terraform/*
