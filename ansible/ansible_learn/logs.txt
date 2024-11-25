@@ -1,0 +1,266 @@
+2024-11-16 21:19:43,470 p=31234 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 21:19:43,488 p=31234 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 21:19:52,627 p=31234 u=madmin |  ok: [s20380863-01]
+2024-11-16 21:19:52,657 p=31234 u=madmin |  TASK [default_packages : Установка программ] **************************************************************************
+2024-11-16 21:19:55,642 p=31234 u=madmin |  failed: [s20380863-01] (item=['dnsutils', 'net-tools', 'rsync', 'mc', 'curl', 'wget']) => {"changed": false, "item": ["dnsutils", "net-tools", "rsync", "mc", "curl", "wget"], "msg": "'/usr/bin/apt-mark manual dnsutils net-tools rsync mc curl wget' failed: E: Could not create temporary file for /var/lib/apt/extended_states - mkstemp (13: Permission denied)\nE: Failed to write temporary StateFile /var/lib/apt/extended_states\n", "rc": 100, "stderr": "E: Could not create temporary file for /var/lib/apt/extended_states - mkstemp (13: Permission denied)\nE: Failed to write temporary StateFile /var/lib/apt/extended_states\n", "stderr_lines": ["E: Could not create temporary file for /var/lib/apt/extended_states - mkstemp (13: Permission denied)", "E: Failed to write temporary StateFile /var/lib/apt/extended_states"], "stdout": "dnsutils can not be marked as it is not installed.\nnet-tools was already set to manually installed.\nmc can not be marked as it is not installed.\ncurl was already set to manually installed.\nwget was already set to manually installed.\n", "stdout_lines": ["dnsutils can not be marked as it is not installed.", "net-tools was already set to manually installed.", "mc can not be marked as it is not installed.", "curl was already set to manually installed.", "wget was already set to manually installed."]}
+2024-11-16 21:19:55,647 p=31234 u=madmin |  	to retry, use: --limit @/home/madmin/learning/sysadmin/ansible_learn/playbook.retry
+
+2024-11-16 21:19:55,648 p=31234 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 21:19:55,648 p=31234 u=madmin |  s20380863-01               : ok=1    changed=0    unreachable=0    failed=1   
+2024-11-16 21:22:37,238 p=32346 u=madmin |  ERROR! Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/default_packages/tasks/main.yml': line 7, column 9, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  become: yes
+    name: "{{ item }}" #Имя пакета из цикла
+        ^ here
+We could be wrong, but this one looks like it might be an issue with
+missing quotes.  Always quote template expression brackets when they
+start a value. For instance:
+
+    with_items:
+      - {{ foo }}
+
+Should be written as:
+
+    with_items:
+      - "{{ foo }}"
+
+2024-11-16 21:24:09,308 p=401 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 21:24:09,324 p=401 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 21:24:17,658 p=401 u=madmin |  ok: [s20380863-01]
+2024-11-16 21:24:17,665 p=401 u=madmin |  TASK [default_packages : Установка программ] **************************************************************************
+2024-11-16 21:24:19,934 p=401 u=madmin |  failed: [s20380863-01] (item=['dnsutils', 'net-tools', 'rsync', 'mc', 'curl', 'wget']) => {"changed": false, "item": ["dnsutils", "net-tools", "rsync", "mc", "curl", "wget"], "msg": "Unsupported parameters for (apt) module: become Supported parameters include: allow_unauthenticated, autoclean, autoremove, cache_valid_time, deb, default_release, dpkg_options, force, force_apt_get, install_recommends, only_upgrade, package, purge, state, update_cache, upgrade"}
+2024-11-16 21:24:19,939 p=401 u=madmin |  	to retry, use: --limit @/home/madmin/learning/sysadmin/ansible_learn/playbook.retry
+
+2024-11-16 21:24:19,940 p=401 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 21:24:19,940 p=401 u=madmin |  s20380863-01               : ok=1    changed=0    unreachable=0    failed=1   
+2024-11-16 22:53:41,199 p=32185 u=madmin |   [WARNING]: While constructing a mapping from /home/madmin/learning/sysadmin/ansible_learn/inventory.yaml, line 9,
+column 5, found a duplicate dict key (ansible_user). Using last defined value only.
+
+2024-11-16 22:53:41,398 p=32185 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 22:53:41,414 p=32185 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 22:54:07,804 p=32185 u=madmin |   [ERROR]: User interrupted execution
+
+2024-11-16 22:54:33,383 p=32490 u=madmin |   [WARNING]: While constructing a mapping from /home/madmin/learning/sysadmin/ansible_learn/inventory.yaml, line 9,
+column 5, found a duplicate dict key (ansible_user). Using last defined value only.
+
+2024-11-16 22:54:33,604 p=32490 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 22:54:33,623 p=32490 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 22:54:46,213 p=32490 u=madmin |   [ERROR]: User interrupted execution
+
+2024-11-16 22:55:58,882 p=521 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 22:55:58,898 p=521 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 22:56:08,527 p=521 u=madmin |  ok: [s20380863-01]
+2024-11-16 22:56:08,547 p=521 u=madmin |  TASK [default_packages : Установка программ] **************************************************************************
+2024-11-16 22:56:31,519 p=521 u=madmin |  changed: [s20380863-01] => (item=['dnsutils', 'net-tools', 'rsync', 'mc', 'curl', 'wget'])
+2024-11-16 22:56:31,525 p=521 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 22:56:31,525 p=521 u=madmin |  s20380863-01               : ok=2    changed=1    unreachable=0    failed=0   
+2024-11-16 23:00:58,903 p=2518 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 23:00:58,920 p=2518 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:01:07,942 p=2518 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:01:07,973 p=2518 u=madmin |  TASK [default_packages : Установка программ] **************************************************************************
+2024-11-16 23:01:25,646 p=2518 u=madmin |  changed: [s20380863-01] => (item=['dnsutils', 'net-tools', 'rsync', 'mc', 'curl', 'wget', 'gcc'])
+2024-11-16 23:01:25,647 p=2518 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 23:01:25,647 p=2518 u=madmin |  s20380863-01               : ok=2    changed=1    unreachable=0    failed=0   
+2024-11-16 23:07:15,094 p=5225 u=madmin |  - nginx_host was created successfully
+2024-11-16 23:21:45,029 p=10345 u=madmin |  - change_hostname was created successfully
+2024-11-16 23:25:39,909 p=11769 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-16 23:25:39,914 p=11769 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:25:48,284 p=11769 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:25:48,313 p=11769 u=madmin |  TASK [change_hostname : Меняем имя машины] ****************************************************************************
+2024-11-16 23:25:48,327 p=11769 u=madmin |  skipping: [s20380863-01]
+2024-11-16 23:25:48,332 p=11769 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 23:25:48,339 p=11769 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:25:51,231 p=11769 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:25:51,236 p=11769 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 23:25:51,236 p=11769 u=madmin |  s20380863-01               : ok=2    changed=0    unreachable=0    failed=0   
+2024-11-16 23:27:30,744 p=12429 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-16 23:27:30,750 p=12429 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:27:40,846 p=12429 u=madmin |  ok: [vm01]
+2024-11-16 23:27:40,854 p=12429 u=madmin |  TASK [change_hostname : Меняем имя машины] ****************************************************************************
+2024-11-16 23:27:43,004 p=12429 u=madmin |  changed: [vm01]
+2024-11-16 23:27:43,017 p=12429 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 23:27:43,025 p=12429 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:27:45,789 p=12429 u=madmin |  ok: [vm01]
+2024-11-16 23:27:45,790 p=12429 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 23:27:45,790 p=12429 u=madmin |  vm01                       : ok=3    changed=1    unreachable=0    failed=0   
+2024-11-16 23:28:23,129 p=12765 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-16 23:28:23,134 p=12765 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:28:26,059 p=12765 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:28:26,067 p=12765 u=madmin |  TASK [change_hostname : Меняем имя машины] ****************************************************************************
+2024-11-16 23:28:26,076 p=12765 u=madmin |  skipping: [s20380863-01]
+2024-11-16 23:28:26,080 p=12765 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 23:28:26,087 p=12765 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:28:28,935 p=12765 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:28:28,936 p=12765 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 23:28:28,936 p=12765 u=madmin |  s20380863-01               : ok=2    changed=0    unreachable=0    failed=0   
+2024-11-16 23:30:49,800 p=13646 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-16 23:30:49,805 p=13646 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:30:59,885 p=13646 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:30:59,905 p=13646 u=madmin |  TASK [change_hostname : Меняем имя машины] ****************************************************************************
+2024-11-16 23:30:59,918 p=13646 u=madmin |  skipping: [s20380863-01]
+2024-11-16 23:30:59,924 p=13646 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-16 23:30:59,931 p=13646 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-16 23:31:02,630 p=13646 u=madmin |  ok: [s20380863-01]
+2024-11-16 23:31:02,634 p=13646 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-16 23:31:02,635 p=13646 u=madmin |  s20380863-01               : ok=2    changed=0    unreachable=0    failed=0   
+2024-11-16 23:43:47,424 p=18231 u=madmin |  ERROR! - the directory ./nginx_host already exists.you can use --force to re-initialize this directory,
+however it will reset any main.yml files that may have
+been modified there already.
+2024-11-16 23:59:16,284 p=23813 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/tasks/main.yml': line 9, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Подмена веб-страницы
+  ^ here
+
+2024-11-17 00:03:09,457 p=25486 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/tasks/main.yml': line 9, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Подмена веб-страницы
+  ^ here
+
+2024-11-17 00:04:33,094 p=25972 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/tasks/main.yml': line 9, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Подмена веб-страницы
+  ^ here
+
+2024-11-17 00:15:33,605 p=29927 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/tasks/main.yml': line 9, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Подмена веб-страницы
+  ^ here
+
+2024-11-17 00:25:02,005 p=1014 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/handlers/main.yml': line 3, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+# handlers file for nginx_host
+- name: Nginx Reloader
+  ^ here
+
+2024-11-17 00:28:16,453 p=2268 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/handlers/main.yml': line 4, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+#- name: Nginx Reloader
+- name:
+  ^ here
+
+2024-11-17 00:28:48,161 p=2463 u=madmin |  ERROR! The handlers/main.yml file for role 'nginx_host' must contain a list of tasks
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/handlers/main.yml': line 5, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+#- name:
+  ansible.builtin.service:
+  ^ here
+
+2024-11-17 00:30:09,718 p=2963 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/handlers/main.yml': line 4, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Nginx Reloader
+  ^ here
+
+2024-11-17 00:31:06,176 p=3310 u=madmin |  ERROR! no action detected in task. This often indicates a misspelled module name, or incorrect module path.
+
+The error appears to have been in '/home/madmin/learning/sysadmin/ansible_learn/nginx_host/handlers/main.yml': line 4, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Перезагрузчик Nginx
+  ^ here
+
+2024-11-17 00:44:17,230 p=8477 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-17 00:44:17,235 p=8477 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 00:44:28,434 p=8477 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:44:28,439 p=8477 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-17 00:44:28,446 p=8477 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 00:44:31,228 p=8477 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:44:31,233 p=8477 u=madmin |  PLAY [Установка и настройка nginx c кастомной страницей] **************************************************************
+2024-11-17 00:44:31,240 p=8477 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 00:44:33,980 p=8477 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:44:34,001 p=8477 u=madmin |  TASK [nginx_host : Установка Nginx] ***********************************************************************************
+2024-11-17 00:44:36,968 p=8477 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:44:36,989 p=8477 u=madmin |  TASK [nginx_host : Подмена веб-страницы] ******************************************************************************
+2024-11-17 00:44:41,706 p=8477 u=madmin |  changed: [s20380863-01]
+2024-11-17 00:44:41,707 p=8477 u=madmin |  RUNNING HANDLER [nginx_host : Nginx Reloader] *************************************************************************
+2024-11-17 00:44:44,210 p=8477 u=madmin |  changed: [s20380863-01]
+2024-11-17 00:44:44,213 p=8477 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-17 00:44:44,214 p=8477 u=madmin |  s20380863-01               : ok=6    changed=2    unreachable=0    failed=0   
+2024-11-17 00:53:43,911 p=11821 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-17 00:53:43,916 p=11821 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 00:53:52,068 p=11821 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:53:52,089 p=11821 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-17 00:53:52,108 p=11821 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 00:53:55,235 p=11821 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:53:55,252 p=11821 u=madmin |  PLAY [Установка и настройка nginx c кастомной страницей] **************************************************************
+2024-11-17 00:53:55,260 p=11821 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 00:53:58,191 p=11821 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:53:58,199 p=11821 u=madmin |  TASK [nginx_host : Установка Nginx] ***********************************************************************************
+2024-11-17 00:54:01,666 p=11821 u=madmin |  ok: [s20380863-01]
+2024-11-17 00:54:01,675 p=11821 u=madmin |  TASK [nginx_host : Подмена веб-страницы] ******************************************************************************
+2024-11-17 00:54:06,415 p=11821 u=madmin |  changed: [s20380863-01]
+2024-11-17 00:54:06,416 p=11821 u=madmin |  RUNNING HANDLER [nginx_host : Nginx Reloader] *************************************************************************
+2024-11-17 00:54:09,037 p=11821 u=madmin |  changed: [s20380863-01]
+2024-11-17 00:54:09,038 p=11821 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-17 00:54:09,038 p=11821 u=madmin |  s20380863-01               : ok=6    changed=2    unreachable=0    failed=0   
+2024-11-17 20:16:48,710 p=11014 u=madmin |  PLAY [Изменение имени машины на имя из Inventory] *********************************************************************
+2024-11-17 20:16:48,755 p=11014 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 20:17:02,863 p=11014 u=madmin |  ok: [s20380863-01]
+2024-11-17 20:17:02,869 p=11014 u=madmin |  PLAY [Установка стандартных пакетов] **********************************************************************************
+2024-11-17 20:17:02,879 p=11014 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 20:17:05,851 p=11014 u=madmin |  ok: [s20380863-01]
+2024-11-17 20:17:05,856 p=11014 u=madmin |  PLAY [Установка и настройка nginx c кастомной страницей] **************************************************************
+2024-11-17 20:17:05,864 p=11014 u=madmin |  TASK [Gathering Facts] ************************************************************************************************
+2024-11-17 20:17:08,622 p=11014 u=madmin |  ok: [s20380863-01]
+2024-11-17 20:17:08,630 p=11014 u=madmin |  TASK [nginx_host : Установка Nginx] ***********************************************************************************
+2024-11-17 20:17:12,157 p=11014 u=madmin |  ok: [s20380863-01]
+2024-11-17 20:17:12,189 p=11014 u=madmin |  TASK [nginx_host : Подмена файла настроек nginx] **********************************************************************
+2024-11-17 20:17:17,179 p=11014 u=madmin |  changed: [s20380863-01]
+2024-11-17 20:17:17,211 p=11014 u=madmin |  TASK [nginx_host : Подмена веб-страницы] ******************************************************************************
+2024-11-17 20:17:21,832 p=11014 u=madmin |  fatal: [s20380863-01]: FAILED! => {"changed": false, "checksum": "0fed41e4e9465d41865e8eb3fba99050370632b6", "msg": "Destination directory /var/www/example_page does not exist"}
+2024-11-17 20:17:21,835 p=11014 u=madmin |  	to retry, use: --limit @/home/madmin/learning/sysadmin/ansible_learn/playbook.retry
+
+2024-11-17 20:17:21,836 p=11014 u=madmin |  PLAY RECAP ************************************************************************************************************
+2024-11-17 20:17:21,836 p=11014 u=madmin |  s20380863-01               : ok=5    changed=1    unreachable=0    failed=1   

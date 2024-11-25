@@ -1,0 +1,18 @@
+---
+# tasks file for nginx_host
+
+- name: Установка Nginx
+  apt:
+    name: "nginx"
+    state: present
+
+#- name: Подмена файла настроек nginx
+#  copy:
+#    src: default
+#    dest: /etc/nginx/sites-enabled/
+
+- name: Подмена веб-страницы
+  template:
+    src: index.j2
+    dest: /var/www/html/
+  notify: "Nginx Reloader"

@@ -1,0 +1,13 @@
+---
+linux:
+  children:
+    nginx:
+      hosts:
+        s20380863-01:
+          ansible_host: 10.10.1.170
+  vars:
+    ansible_user: s20380863
+    ansible_ssh_private_key_file: ~/.ssh/id_ecdsa01
+    connection_protocol: ssh
+    ansible_become: yes
+    ansible_python_interpreter: /usr/bin/python3
